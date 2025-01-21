@@ -26,7 +26,7 @@ func HandleValidationError(c *gin.Context, err error) {
 
 		errResponse := validationErrorMsg{
 			Status:  "failed",
-			Message: "Validation failed",
+			Message: "Validation fail",
 			Errors:  errMsg,
 		}
 
