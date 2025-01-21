@@ -5,6 +5,7 @@ import (
 	"praktik-todo/config"
 	"praktik-todo/internal/entity"
 	"praktik-todo/internal/handler"
+	"praktik-todo/internal/middleware"
 	"praktik-todo/internal/repository"
 	"praktik-todo/internal/usecase"
 
@@ -52,7 +53,7 @@ func main() {
 
 	api := r.Group("/api")
 	{
-		api.GET("/tasks", taskHandler.GetAllTasks)
+		api.GET("/tasks", middleware.AuthMiddleware(), taskHandler.GetAllTasks)
 		api.GET("/tasks/:id", taskHandler.GetTaskByID)
 		api.POST("/tasks", taskHandler.CreateTask)
 		api.PUT("/tasks/:id", taskHandler.UpdateTask)

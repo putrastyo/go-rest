@@ -50,8 +50,14 @@ func (u *userUsecase) Login(email string, password string) (string, error) {
 		return "", errors.New("invalid email or password")
 	}
 
+	// generate token jwt
+	token, err := utils.GenerateJWT(user.Email)
+	if err != nil {
+		return "", err
+	}
+
 	// return token
-	return "JWT NGENTOT", nil
+	return token, nil
 }
 
 func (u *userUsecase) GetAllUsers() ([]entity.User, error) {
